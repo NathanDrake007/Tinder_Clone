@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
+import axios from "../axios";
 import "./tindercard.css";
 function TinderCards() {
-  const [people, setPeople] = useState([
-    {
-      name: "Elon Musk",
-      url: "",
-    },
-    {
-      name: "Bill Gates",
-      url: "",
-    },
-    {
-      name: "Tony Stark",
-      url: "",
-    },
-  ]);
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("/tinder/card");
+
+      setPeople(response.data);
+    }
+    fetchData();
+  }, [people]);
   const swiped = (direction, nameToDelete) => {
     console.log("removing" + nameToDelete);
   };
