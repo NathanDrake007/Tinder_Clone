@@ -1,15 +1,23 @@
 import React from "react";
-import Header from "./Components/Header";
-import TinderCards from "./Components/TinderCards";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
 import "./App.css";
-import SwipeButtons from "./Components/SwipeButtons";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useStateValue } from "./StateProvider";
 function App() {
+  // eslint-disable-next-line
+  const [{ user }, dispatch] = useStateValue();
+
   return (
     <div className="App">
-      <Header />
-      <TinderCards />
-      <SwipeButtons />
+      <Router>
+        <Switch>
+          {user != null ? <Route path="/home" exact component={Home} /> : null}
+          <Route path="/" component={Login} />
+          <Route path="/signup" component={SignUp} />
+        </Switch>
+      </Router>
     </div>
   );
 }

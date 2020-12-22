@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import PersonIcon from "@material-ui/icons/Person";
 import ForumIcon from "@material-ui/icons/Forum";
-import logo from "../images/tinderIcon.png";
+import { Link } from "react-router-dom";
 import "./header.css";
 function Header() {
   return (
@@ -10,7 +10,9 @@ function Header() {
       <IconButton>
         <PersonIcon fontSize="large" className="header_icon" />
       </IconButton>
-      <img className="header_logo" alt="logo" src={logo} />
+      <Link to="/home">
+        <img className="header_logo" alt="logo" src="tinderIcon.png" />
+      </Link>
       <IconButton>
         <ForumIcon fontSize="large" className="header_icon" />
       </IconButton>
